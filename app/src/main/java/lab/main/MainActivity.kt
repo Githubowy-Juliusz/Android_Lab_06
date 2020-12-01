@@ -11,16 +11,15 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
-		val bounceFragment = BounceFragment()
+		val bounceFragment = BounceFragment(::runOnUiThread)
 		val controlsFragment = ControlsFragment()
 		val buttonToControls = findViewById<Button>(R.id.mainToControlsButton)
 		val buttonToBounce = findViewById<Button>(R.id.mainToBounceButton)
-
 		supportFragmentManager.beginTransaction().apply {
 			replace(R.id.frameLayout, controlsFragment)
 			commit()
 		}
-		buttonToBounce.visibility = View.GONE
+		buttonToControls.visibility = View.GONE
 
 		buttonToBounce.setOnClickListener {
 			buttonToBounce.visibility = View.GONE
